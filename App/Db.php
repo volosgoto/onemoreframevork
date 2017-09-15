@@ -9,9 +9,11 @@
 namespace App;
 
 
-class db
+class Db
 {
-    public function __construct($class) {
+    public function __construct() {
+
+        //echo __DIR__;
         echo 'Hello db';
     }
 }

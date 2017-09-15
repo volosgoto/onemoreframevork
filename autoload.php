@@ -1,23 +1,18 @@
 <?php
+
 spl_autoload_extensions(".php");
 
-spl_autoload_register(function($class) {
-    $prefix = 'app\\';
-    $length = strlen($prefix);
-    $base_directory = __DIR__ . '/app/';
-//
-//    var_dump($base_directory) or Die();
-//    if(strncmp($prefix, $class, $length) !== 0) {
-//        return;
-//    }
+function autoload_classes($className) {
+    $fileName = __DIR__ . '/' . str_replace('\\', DIRECTORY_SEPARATOR, $className) . '.php';
+    //var_dump($fileName) or Die();
 
-    $relative_class = substr($class, $length);
-
-
-    $file = $base_directory . str_replace('\\', DIRECTORY_SEPARATOR, $relative_class) . '.php';
-
-
-    if(file_exists($file)) {
-        require $file;
+    if(file_exists($fileName)) {
+        require $fileName;
+    } else {
+        throw new Exception('Failed to include class: '.$className);
     }
-});
+}
+
+//autoload_classes('Db');
+
+spl_autoload_register('autoload_classes');
