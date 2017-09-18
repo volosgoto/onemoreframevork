@@ -22,7 +22,7 @@ class Db {
 
     public function __construct() {
         $this->dsn = "mysql:host=$this->host; dbname=$this->db; charset=$this->charset";
-        $this->dbh = new \PDO($this->dsn, $this->user, $this->pass, $this->opt);;
+        $this->dbh = new \PDO($this->dsn, $this->user, $this->pass, $this->opt);
     }
     public function execute($sql){
         $sth = $this->dbh->prepare($sql);
