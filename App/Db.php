@@ -6,7 +6,7 @@ use PDO;
 class Db {
 
     protected $host = 'localhost';
-    protected $db   = 'test';
+    protected $db   = 'onemoreframework';
     protected $user = 'root';
     protected $pass = '';
     protected $charset = 'utf8';
@@ -18,16 +18,27 @@ class Db {
     ];
 
     protected $dsn;
-    protected $dbh;
+    protected $dbh; // database handler
+
 
     public function __construct() {
         $this->dsn = "mysql:host=$this->host; dbname=$this->db; charset=$this->charset";
         $this->dbh = new \PDO($this->dsn, $this->user, $this->pass, $this->opt);
     }
+
     public function execute($sql){
         $sth = $this->dbh->prepare($sql);
         $res = $sth->execute();
-
         return $res;
+    }
+
+    public function query($sql){
+        $sth = $this->dbh->prepare($sql);
+        $res = $sth->execute();
+            if (false !== $res){
+                return $sth->fetchAll();
+            } else {
+                return [];
+            }
     }
 }
