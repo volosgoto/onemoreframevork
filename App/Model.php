@@ -1,15 +1,8 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: andrey
- * Date: 9/19/17
- * Time: 11:03 AM
- */
-
 namespace App;
 
+abstract class Model {
 
-class Model {
     const TABLE = '';
 
     public static function findAll() {
@@ -21,4 +14,5 @@ class Model {
         //'SELECT * FROM ' . self::$table,
         //'App\Models\User'
     }
+    abstract public function getName();
 }

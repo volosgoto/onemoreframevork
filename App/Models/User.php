@@ -12,4 +12,9 @@ class User extends Model{
 //        $db = new Db();
 //        return $db->query('SELECT * FROM users', 'App\Models\User');
 //    }
+
+    public function getName() {
+        // TODO: Implement getName() method.
+    }
+
 }
