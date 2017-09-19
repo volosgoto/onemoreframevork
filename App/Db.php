@@ -17,7 +17,7 @@ class Db {
         PDO::ATTR_EMULATE_PREPARES   => false,
     ];
 
-    protected $dsn;
+    protected $dsn; // data source name
     protected $dbh; // database handler
 
 
@@ -26,17 +26,17 @@ class Db {
         $this->dbh = new \PDO($this->dsn, $this->user, $this->pass, $this->opt);
     }
 
-    public function execute($sql){
+    public function execute($sql) {
         $sth = $this->dbh->prepare($sql);
         $res = $sth->execute();
         return $res;
     }
 
-    public function query($sql){
+    public function query($sql, $class) {
         $sth = $this->dbh->prepare($sql);
         $res = $sth->execute();
             if (false !== $res){
-                return $sth->fetchAll();
+                return $sth->fetchAll(\PDO::FETCH_CLASS, $class); //выводим объекты заданного класса
             } else {
                 return [];
             }
