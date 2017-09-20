@@ -18,9 +18,13 @@ require __DIR__ . '/autoload.php';
 //$users = $user->findAll();
 
 //echo \App\Models\User::$table . '<br>';
-echo \App\Models\User::TABLE . '<br>';
-$users = \App\Models\User::findAll();
-var_dump($users);
+//echo \App\Models\User::TABLE . '<br>';
+//$users = \App\Models\User::findAll();
+
+$params = [':params' => 2];
+$name = \App\Models\User::findById($params);
+//var_dump($users);
+var_dump($name);
 
 
 ?>

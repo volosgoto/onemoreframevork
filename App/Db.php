@@ -26,15 +26,17 @@ class Db {
         $this->dbh = new \PDO($this->dsn, $this->user, $this->pass, $this->opt);
     }
 
-    public function execute($sql) {
+    public function execute($sql, $params) {
+        $params = [];
         $sth = $this->dbh->prepare($sql);
-        $res = $sth->execute();
+        $res = $sth->execute($params);
         return $res;
     }
 
-    public function query($sql, $class) {
+    public function query($sql, $class, $params) {
+        $params = [];
         $sth = $this->dbh->prepare($sql);
-        $res = $sth->execute();
+        $res = $sth->execute($params);
             if (false !== $res){
                 return $sth->fetchAll(\PDO::FETCH_CLASS, $class); //выводим объекты заданного класса
             } else {

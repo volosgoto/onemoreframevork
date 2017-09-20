@@ -3,18 +3,14 @@
 namespace App\Models;
 use App\Model;
 
-class User extends Model{
+class User extends Model {
     const TABLE = 'users';
     public $email;
     public $name;
+    public static $params;
 
-//    public function findAll(){
-//        $db = new Db();
-//        return $db->query('SELECT * FROM users', 'App\Models\User');
-//    }
-
-    public function getName() {
-        // TODO: Implement getName() method.
+    public static function getTable($params) {
+        return self::$params = $params;
     }
 
 }
